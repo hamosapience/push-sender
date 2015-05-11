@@ -1,13 +1,13 @@
 var got = require('got-promise');
+
 var express = require('express');
+var bodyParser = require('body-parser');
+var multer = require('multer');
+
 var fs = require('fs');
 var ini = require('ini');
 
 var config = ini.parse(fs.readFileSync('./config.list', 'utf-8'));
-var app = express();
-
-var bodyParser = require('body-parser');
-var multer = require('multer');
 
 var URL = 'https://api.pushbullet.com/v2/pushes';
 var PUSHBULLET_TOKEN = process.env.PUSHBULLET_TOKEN || config.PUSHBULLET_TOKEN;
@@ -32,6 +32,8 @@ function sendPush(title, text) {
         })
     });
 }
+
+var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
