@@ -1,0 +1,1 @@
+docker run -d --name="push-sender" --env-file="config.list" hamosapience/push-sender
